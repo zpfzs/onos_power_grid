@@ -28,6 +28,7 @@ import org.onosproject.ui.UiConnection;
 import org.onosproject.ui.UiMessageHandler;
 import org.onosproject.ui.table.TableModel;
 import org.onosproject.ui.table.TableRequestHandler;
+import java.io.*;
 
 import java.util.Collection;
 
@@ -51,6 +52,7 @@ public class RoadmDeviceViewMessageHandler extends UiMessageHandler {
     private static final String HW_VERSION = "hwVersion";
     private static final String SW_VERSION = "swVersion";
     private static final String PROTOCOL = "protocol";
+
 
     private static final String[] COLUMN_IDS = {
             ID, NAME, TYPE, MASTER, PORTS, VENDOR, HW_VERSION, SW_VERSION, PROTOCOL

@@ -39,5 +39,8 @@
       }
     }
   },
-  "defaultProject": "roadm-gui-lib"
+  "defaultProject": "roadm-gui-lib",
+  "cli": {
+    "analytics": "ed299f22-e2e1-4f2d-83a0-f84e54cf0f41"
+  }
 }

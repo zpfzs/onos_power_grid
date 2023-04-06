@@ -1,0 +1,111 @@
+<body>
+<div id="main_topo">
+    <div class="div_title">
+        <img [src]="pic3"><p>拓扑</p>
+        <div class="clear"></div>
+        <hr>
+    </div>
+    <div id="div_topo">
+        <svg id="mainsvg" class="svgs" width="1600" height="1600"></svg>
+        <button id="CS" type="button" (click)="show()">路由推荐</button>
+        <div id="topo_panel" *ngIf="switch">
+                <span>
+                    <p class="panel_p">源网元:</p>
+                    <select name="sne" id="sne" class="panel_s" [(ngModel)]="topoPanel.SNE">
+                        <option [value]="item" *ngFor="let item of ID_list">{{item}}</option>
+                    </select>
+                </span>
+            <div class="clear"></div>
+            <span>
+                    <p class="panel_p">宿网元:</p>
+                    <select name="dne" id="dne" class="panel_s" [(ngModel)]="topoPanel.DNE">
+                        <option [value]="item" *ngFor="let item of ID_list">{{item}}</option>
+                    </select>
+            </span>
+            <div class="clear"></div>
+<!--            <ul>-->
+<!--                <li>Bandwidth:<input type="text" id="Bandwidth" [(ngModel)]="topoPanel.BW"/>Mbps</li>-->
+<!--            </ul>-->
+            <div>
+                <button id="CF" type="button" (click)="aa()">提交</button>
+                <button id="CC" type="button" (click)="vanish()">取消</button>
+            </div>
+            <div>
+                <p *ngIf="path1">算路中......</p>
+                <p *ngIf="path11">算路算路完成</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="service_line">
+    <div class="div_title">
+        <img [src]="pic3"><p>网络信息</p>
+        <div class="clear"></div>
+        <hr>
+    </div>
+    <div id="div_service">
+        <div id="gen">
+            <p class="title">概况</p>
+            <div id="general">
+                <p>协议:GMPLS</p>
+                <p>节点数量:{{nodes_num}}</p>
+                <p>链路数量:{{links_num}}</p>
+            </div>
+        </div>
+        <div id="no">
+            <p class="title">网元信息</p>
+            <div id="nodes"></div>
+        </div>
+        <div id="li">
+            <p class="title">链路信息</p>
+            <div id="links"></div>
+        </div>
+
+        <div class="clear"></div>
+        <div id="serv">
+            <p class="title">业务信息</p>
+            <div id="services">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="create_view">
+    <div class="div_title">
+        <img [src]="pic3"><p>路由推荐信息</p>
+        <div class="clear"></div>
+        <hr>
+    </div>
+    <div id="create_content">
+        <table>
+            <thead>
+            <tr>
+                <th width="5%">序号</th>
+                <th width="15%">源网元</th>
+                <th width="20%">宿网元</th>
+<!--                <th>带宽</th>-->
+                <th width="20%">创建时间</th>
+                <th width="45%">算路结果</th>
+            </tr>
+            </thead>
+            <tr *ngFor="let item of sevlist">
+                <td>{{item.xh}}</td>
+                <td>{{item.sne}}</td>
+                <td>{{item.dne}}</td>
+<!--                <td>{{item.bw}}</td>-->
+                <td>{{item.CT | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{item.route}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<button type="button" (click)="initialize()">清空列表</button>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>

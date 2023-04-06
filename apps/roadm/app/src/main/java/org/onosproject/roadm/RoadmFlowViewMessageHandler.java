@@ -15,6 +15,8 @@
  */
 package org.onosproject.roadm;
 
+import apps.roadm.app.src.main.java.org.onosproject.roadm.test;
+import apps.roadm.app.src.main.java.org.onosproject.roadm.test1;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Range;
@@ -38,10 +40,13 @@ import org.onosproject.ui.table.cell.HexLongFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Set;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import java.io.IOException;
+import java.util.*;
 
 import static org.onosproject.ui.JsonUtils.node;
 import static org.onosproject.ui.JsonUtils.number;
@@ -67,6 +72,28 @@ public class RoadmFlowViewMessageHandler extends UiMessageHandler {
     private static final String ROADM_SHOW_ITEMS_REQ = "roadmShowFlowItemsRequest";
     private static final String ROADM_SHOW_ITEMS_RESP = "roadmShowFlowItemsResponse";
 
+
+    //后端给前端发消息hi sgp 一会儿删除
+    private static final String HI_SGP_RESP = "hiResponse";
+    private static final String THERECEIVE="receive message";
+
+    //定义发送的字符
+    public String theSource;
+
+    public String theTarget;
+
+    public String theCity;
+    public String theSecond;
+    //后端定义
+    private static final String HELLOWORLD_REQ = "helloworldRequest";
+    private static final String THE_SOURCE = "source";
+    private static final String THE_TARGET = "target";
+    private static final String THE_CITY = "city";
+
+//    private static final String THE_SECOND_WORD
+
+
+
     private static final String ID = "id";
     private static final String FLOW_ID = "flowId";
     private static final String APP_ID = "appId";
@@ -91,10 +118,21 @@ public class RoadmFlowViewMessageHandler extends UiMessageHandler {
             CHANNEL_FREQUENCY, CURRENT_POWER, ATTENUATION, HAS_ATTENUATION
     };
 
+    public static Object getKey(Map map, Object value){
+        List<Object> keyList = new ArrayList<>();
+        for(Object key: map.keySet()){
+            if(map.get(key).equals(value)){
+                keyList.add(key);
+            }
+        }
+        return keyList.get(0);
+    }
+
     private RoadmService roadmService;
     private DeviceService deviceService;
     private FlowRuleService flowRuleService;
 
+   // private String myList;
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
@@ -112,8 +150,198 @@ public class RoadmFlowViewMessageHandler extends UiMessageHandler {
                 new SetAttenuationRequestHandler(),
                 new DeleteConnectionRequestHandler(),
                 new CreateConnectionRequestHandler(),
-                new CreateShowItemsRequestHandler()
+                new CreateShowItemsRequestHandler(),
+                new SayHelloWorld()
         );
+    }
+
+    private String strTmp;
+    private String myList;
+    private Object i1;
+    private Object i2;
+    private Object i3;
+    private Object i4;
+    private String ii1;
+    private String ii2;
+    //定义方法
+    private final class SayHelloWorld extends RequestHandler{
+        private SayHelloWorld(){super(HELLOWORLD_REQ);}
+
+        @Override
+        public void process(ObjectNode payload){
+            theSource = string(payload, THE_SOURCE);
+            log.info("The theSource: {}", theSource);
+            theTarget = string(payload, THE_TARGET);
+            log.info("The theTarget : {}", theTarget);
+            theCity = string(payload, THE_CITY);
+            log.info("The theCity : {}", theCity);
+
+            HashMap<String,String> mm4= new HashMap<>();
+            HashMap<String,String> mm3= new HashMap<>();
+
+            //城市1
+            try {
+                FileReader filePath=new FileReader("/home/xinjiang/onos/apps/roadm/app/src/main/java/org/onosproject/roadm/chengshi1.txt");
+                BufferedReader buffReader = new BufferedReader(filePath);
+                while(true){
+                    strTmp = buffReader.readLine();
+                    if (strTmp == null){
+                        break;
+                    }
+                    StringBuffer mm = new StringBuffer(strTmp);
+                    int m1=mm.indexOf(" ");
+                    int m2=mm.indexOf(" ",m1+1);
+                    String nnn=mm.substring(0,m1);
+                    String nnnn=mm.substring(m1+1,m2);
+                    String nn=mm.substring(m2+2, mm.length()-1);
+                    mm3.put(nnn+"-"+nnnn,nn);
+                }
+                buffReader.close();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            log.info("fasadf{}",mm3.get("0-1"));
+
+            String filePath2="/home/xinjiang/onos/apps/roadm/app/src/main/java/org/onosproject/roadm/chengshi2.txt";
+            FileInputStream fin2 = null;
+            try {
+                fin2 = new FileInputStream(filePath2);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            InputStreamReader reader2 = new InputStreamReader(fin2);
+            BufferedReader buffReader2 = new BufferedReader(reader2);
+            String strTmp2 = "";
+
+            //城市2
+            while(true){
+                try {
+                    if ((strTmp2 = buffReader2.readLine()) == null) break;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                StringBuffer mm = new StringBuffer(strTmp2);
+                int m1=mm.indexOf(" ");
+                int m2=mm.indexOf(" ",m1+1);
+                String nnn=mm.substring(0,m1);
+                String nnnn=mm.substring(m1+1,m2);
+                String nn=mm.substring(m2+2, mm.length()-1);
+                mm4.put(nnn+"-"+nnnn,nn);
+            }
+            //m3 chengshi1 m4 chengshi2 luyou
+
+            //chengshijianzhi
+            List<Object> mm1=new ArrayList<>();
+            String filePath3="/home/xinjiang/onos/apps/roadm/app/src/main/java/org/onosproject/roadm/chengshi11.txt";
+            String filePath4="/home/xinjiang/onos/apps/roadm/app/src/main/java/org/onosproject/roadm/chengshi22.txt";
+            //创建HashMAP
+            HashMap<String, String> chengshi111 = new HashMap<String, String>();
+            HashMap<String, String> chengshi222 = new HashMap<String, String>();
+
+            FileInputStream fin3 = null;
+            try {
+                fin3 = new FileInputStream(filePath3);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            FileInputStream fin4 = null;
+            try {
+                fin4 = new FileInputStream(filePath4);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            InputStreamReader reader3 = new InputStreamReader(fin3);
+            InputStreamReader reader4 = new InputStreamReader(fin4);
+            BufferedReader buffReader3 = new BufferedReader(reader3);
+            BufferedReader buffReader4 = new BufferedReader(reader4);
+            String strTmp3 = "";
+            String strTmp4 = "";
+            while(true){
+                try {
+                    if (!((strTmp3 = buffReader3.readLine()) != null)) break;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                StringBuffer mm = new StringBuffer(strTmp3);
+                int m1=mm.indexOf("-");
+                String nn=mm.substring(m1-1, mm.length());
+                String nnn=mm.substring(0,m1-2);
+                chengshi111.put(nnn,nn);
+            }
+            while(true){
+                try {
+                    if (!((strTmp4 = buffReader4.readLine()) != null)) break;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                StringBuffer mm = new StringBuffer(strTmp4);
+                int m1=mm.indexOf("\t");
+//            System.out.println(mm);
+                String nn=mm.substring(m1+1, mm.length());
+                String nnn=mm.substring(0,m1);
+                chengshi222.put(nnn,nn);
+            }
+            log.info("jianzhi{}",chengshi111.get("1"));
+            log.info("jianzhi2{}",chengshi222.get("1"));
+
+            if(theCity.equals("1")){
+                i1 = getKey(chengshi111, theSource);
+                i2 = getKey(chengshi111, theTarget);
+                ii1=i1+"-"+i2;
+            }
+            if (theCity.equals("2")){
+                i3 = getKey(chengshi222, theSource);
+                i4 = getKey(chengshi222, theTarget);
+                ii1=i3+"-"+i4;
+            }
+            log.info("i1{}",ii1);
+            log.info("i2{}",i2);
+//
+////
+            if (theCity.equals("1")) {
+                myList="";
+                if (mm3.get(ii1).equals("on") == false) {
+                    //对城市1的路由信息处理成链表
+                    ArrayList<String> sites = new ArrayList<String>();
+                    for (String retval : mm3.get(ii1).split(", ")) {
+                        sites.add(chengshi111.get(retval));
+                        myList += chengshi111.get(retval) + "——";
+                    }
+                    //对链表序号找值
+                }else {
+                    myList="null——";
+                }
+                log.info("null{}",myList);
+            }
+//
+            if (theCity.equals("2")) {
+                myList="";
+                if (mm4.get(ii1).equals("on") == false) {
+                    //对城市2的路由信息处理成链表
+                    ArrayList<String> sites2 = new ArrayList<String>();
+                    for (String retval : mm4.get(ii1).split(", ")) {
+                        sites2.add(chengshi222.get(retval));
+                        myList += chengshi222.get(retval) + "——";
+                    }
+                    //System.out.println(sites2);
+                    //System.out.println(myList2);
+                    //对链表序号找值
+                }else{
+                    myList="null——";
+                }
+            }
+            log.info("null{}",mm4.get("0-1"));
+
+            String theResponse = myList;
+            ObjectNode test = objectNode();
+            test.put(THERECEIVE, theResponse);
+            //riskLink.put(LINK_RISK_ID,linkId);
+            sendMessage(HI_SGP_RESP, test);
+
+        }
     }
 
     // Handler for sample table requests

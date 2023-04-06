@@ -1,0 +1,249 @@
+#gen{
+float:left;
+margin:0px 0px 0px 30px;
+width:15%;
+height:350px;
+}
+.title{
+font-weight:bold;
+}
+#general{
+width:90%;
+height:80%;
+border: 5px solid black;
+}
+#no{
+float:left;
+margin:0px 0px 0px 30px;
+width:35%;
+height:350px;
+}
+#nodes{
+width:90%;
+height:80%;
+border: 5px solid black;
+overflow-y: auto;
+overflow-x: auto;
+}
+#li{
+float:left;
+margin:0px 0px 0px 30px;
+width:35%;
+height:350px;
+}
+#links{
+width:90%;
+height:80%;
+border: 5px solid black;
+overflow-y: auto;
+overflow-x: auto;
+}
+.clear{
+    clear:both;
+}
+#serv{
+margin:0px 0px 0px 30px;
+width:85%;
+height:350px;
+}
+#services{
+width:90%;
+height:80%;
+border: 5px solid black;
+overflow-y: auto;
+overflow-x: auto;
+}
+body{
+overflow-y: auto;
+background-color: #dcdcdc;
+}
+#main_topo{
+    width:96%;
+    height:870px;
+    background-color:  #f8f8ff;
+    align: center;/*居中*/
+    margin:40px auto;
+}
+.div_title{
+    height: 60px;
+    margin: 0px;
+}
+.div_title p{
+    float:left;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+.div_title img{
+    max-width: 20px;
+    float:left;
+    margin-top:25px;
+    margin-left:20px;
+    margin-bottom: 0px;
+}
+.div_title hr{
+    width:98%;
+    /*position: relative;*/
+    left: 0px;
+    margin-top: 0px;
+}
+#div_topo{
+    width: 98%;
+    height:90%;
+    align: center;/*居中*/
+    margin:0 auto;/*居中*/
+    border: 5px solid #dcdcdc;
+    border-radius: 10px;
+    background-color: #dcdcdc;
+    overflow-y: auto;
+}
+button{
+    /*display: inline-block;*/
+    zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+    /**display: inline;*/
+    vertical-align: baseline;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 14px/100% Arial, Helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+
+}
+button:hover{
+    text-decoration: none;
+}
+#service_line{
+    width:96%;
+    height: 450px;
+    background-color: #f8f8ff;
+    align: center;/*居中*/
+    margin:30px auto;
+}
+#div_service {
+    width: 98%;
+    height: 80%;
+    align: center; /*居中*/
+    margin: 0 auto; /*居中*/
+    border: 5px solid #dcdcdc;
+    border-radius: 10px;
+    background-color: #f8f8ff;
+    overflow-y: auto;
+}
+
+
+#create_view{
+    width:96%;
+    height: 280px;
+    background-color: #f8f8ff;
+    align: center;/*居中*/
+    margin:30px auto;
+}
+#create_content{
+    width: 98%;
+    height: 70%;
+    align: center; /*居中*/
+    margin: 0 auto; /*居中*/
+    border: 5px solid #dcdcdc;
+    border-radius: 10px;
+    background-color: #f8f8ff;
+    overflow-y: auto;
+}
+
+
+#CS{
+    position:absolute;
+    right: 150px;
+    top: 100px;
+}
+#topo_panel{
+    width:400px;
+    height:500px;
+    background-color: #f8f8ff;
+    position:absolute;
+    right: 75px;
+    top: 160px;
+}
+#topo_panel ul li{
+    list-style:none;
+}
+#vs{
+    float: left;
+    margin:20px 20px 0px 20px ;
+}
+#hil{
+    float:left;
+    margin:20px 20px 0px 20px;
+}
+#xinjiang{
+    float:left;
+    margin:20px 20px 0px 20px;
+}
+#CF{
+    margin-top:20px;
+    margin-left:20px;
+}
+#CC{
+    margin-top:20px;
+}
+.panel_p{
+    float:left;
+    margin:15px 30px 15px 30px;
+}
+.panel_s{
+    float:left;
+    margin-left: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#create_content table{
+    align: center;
+    margin:5px auto;
+    border-collapse: collapse;
+    /*border:2px solid black;*/
+    border-right: none;
+    border-left: none;
+    width:90%;
+}
+/*#div_service table tr{
+    height:70px;
+    font-size: 20px;
+    border:2px solid black;
+    border-right: none;
+    border-left: none;
+}*/
+#create_content table td,#create_content table th{
+    /*border:0px;*/
+    /*width:300px;*/
+    text-align: center;
+    margin:5px auto;
+    border:1px solid #cad9ea;
+    color:#666;
+    height:30px;
+    border-right: none;
+    border-left: none;
+}
+/*#div_service table tr:first-child{*/
+    /*font-weight: bold;*/
+/*}*/
+#create_content table thead th{
+    background-color:#808080;
+    color:#ffffff;
+
+}
+#create_content table tr:nth-child(odd){
+    background:#f8f8ff;
+    border-right: none;
+    border-left: none;
+}
+#create_content table tr:nth-child(even){
+    background:#dcdcdc;
+    border-right: none;
+    border-left: none;
+}

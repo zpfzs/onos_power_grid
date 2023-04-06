@@ -17,6 +17,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RoadmDeviceComponent } from './roadm/roadm.component';
 import { RoadmPortComponent } from './port/port.component';
+import { City1Component } from './roadm/components/city1/city1.component';
+import { City2Component } from './roadm/components/city2/city2.component';
 
 const appRoutes: Routes = [
     {
@@ -25,7 +27,21 @@ const appRoutes: Routes = [
     },
     {
         path: '',
-        component: RoadmDeviceComponent
+        component: RoadmDeviceComponent,
+        children:[
+            {
+                path: 'city1',
+                component: City1Component
+            },
+            {
+                path: 'city2',
+                component: City2Component
+            },
+            {
+                path: '',
+                redirectTo: 'city1'
+            }
+        ]
     },
 ];
 

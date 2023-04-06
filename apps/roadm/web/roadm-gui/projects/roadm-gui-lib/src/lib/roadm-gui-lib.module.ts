@@ -21,11 +21,18 @@ import { RoadmDeviceComponent } from './roadm/roadm.component';
 import { RoadmRoutingModule } from './roadm-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoadmPortComponent } from './port/port.component';
+import { City1Component } from './roadm/components/city1/city1.component';
+import { City1dataService } from './roadm/services/city1data.service';
+import { City2Component } from './roadm/components/city2/city2.component';
+import { City2dataService } from './roadm/services/city2data.service';
+import { StorageService } from './roadm/services/storage.service';
 
 @NgModule({
     declarations: [
         RoadmDeviceComponent,
         RoadmPortComponent,
+        City1Component,
+        City2Component,
     ],
     imports: [
         RoadmRoutingModule,
@@ -37,6 +44,11 @@ import { RoadmPortComponent } from './port/port.component';
     exports: [
         RoadmDeviceComponent,
         RoadmPortComponent,
+    ],
+    providers: [
+        City1dataService,
+        City2dataService,
+        StorageService
     ]
 })
 export class RoadmGuiLibModule { }
